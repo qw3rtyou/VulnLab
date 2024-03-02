@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSTI Lab</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>Welcome to SSTI Lab</h2>
+      <p>Enter your name or SSTI payload to test:</p>
+      <form action="/hello" method="get">
+        <div class="form-group">
+          <label for="name">Name/Payload:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Greet Me!</button>
+      </form>
+      {% if greeting %}
+      <div class="mt-3">
+        <h3>Greeting Result:</h3>
+        <div class="alert alert-success" role="alert">
+          {{ greeting | safe }}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
