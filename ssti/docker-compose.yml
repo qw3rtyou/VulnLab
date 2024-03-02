@@ -1,24 +1,8 @@
 version: "3.8"
 services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   app:
     build: .
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      ADMIN_FLAG: ${ADMIN_PASSWORD}
-      LOGIN_FLAG: ${LOGIN_FLAG}
+      FLAG: ${FLAG}
     ports:
-      - "10003:10003"
-    depends_on:
-      - db
+      - "10004:10004"
