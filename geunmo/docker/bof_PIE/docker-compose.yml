@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  server:
+    build: .
+    ports:
+      - "10051:10051"
+
+      

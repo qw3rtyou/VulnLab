@@ -1,0 +1,1 @@
+docker exec -u 0 -it bof3-server-1 bash

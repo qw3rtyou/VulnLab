@@ -1,0 +1,1 @@
+docker exec -u 0 -it bof_pie-server-1 bash

@@ -1,0 +1,1 @@
+docker exec -u 0 -it bof_cnry-server-1 bash
