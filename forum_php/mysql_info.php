@@ -1,5 +1,5 @@
 <?php
 $db_host = 'db';
-$db_username = 'db-connector';
-$db_password = '94452c71e73f6e992002a62adbb0bed2';
-$db_name = 'db000';
+$db_username = getenv('MYSQL_USER');
+$db_password = getenv('MYSQL_PASSWORD');
+$db_name = getenv('MYSQL_DATABASE');

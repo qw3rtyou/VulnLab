@@ -10,7 +10,9 @@ services:
     depends_on:
       - db
     environment:
-      - FLAG=${FLAG}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
   db:
     image: mysql:8.0

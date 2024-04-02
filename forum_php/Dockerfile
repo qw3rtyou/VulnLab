@@ -9,6 +9,9 @@ RUN rm -rf *
 COPY ./www .
 RUN chmod 777 /var/www/html/upload
 
+COPY ./FLAG .
+RUN mv ./FLAG /FLAG
+
 # RUN rm -rf * && git clone https://github.com/qwerty-tommy/php_battle.git .  # 개발 효율을 위해 깃보단 로컬로 작업함
 
 EXPOSE 80
