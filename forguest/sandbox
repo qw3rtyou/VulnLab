@@ -1,0 +1,4 @@
+#!/bin/sh
+readme_content=$(cat readme)
+
+docker run -t -i --rm=true --cpu-shares 512 -m 512m --cap-add=NET_ADMIN sandbox sh -c "echo \"$readme_content\" > /home/guest/README.md && /bin/bash"

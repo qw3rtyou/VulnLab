@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSTI Lab</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        padding-top: 20px;
+      }
+      .container {
+        max-width: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>HTML Lab</h2>
+      <p>Enter your HTML tag to test below:</p>
+      <form action="/ssti" method="post">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="payload"
+            name="payload"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Test!</button>
+      </form>
+      {% if result %}
+      <div class="mt-3">
+        <span>Result:</span>
+        <div class="alert alert-info" role="alert">{{ result | safe }}</div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
