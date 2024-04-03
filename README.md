@@ -1,5 +1,5 @@
 # 공격 실습용 docker 환경 모음
-- basic_test - HTTP 헤더 변조 실습
+- change_header - HTTP 헤더 변조 실습
 - forum_php - CRUD 및 다양한 서비스가 구현된 PHP 기반 서버 공격 실습
 - kknock_weekly - 유사 CTF 서버(문제는 다른 보안 관련 서비스에서 가져온 것도 있음)
 - prototype_pollution - Prototype Pollution 실습
