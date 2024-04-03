@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    chocoshop:
+        build:
+            context: ./
+            dockerfile: ./Dockerfile
+        ports:
+            - "10011:5000"
+        stdin_open: true
+        tty: true
+        privileged: true

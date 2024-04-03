@@ -3,13 +3,10 @@ FROM php:8.1-apache
 RUN apt-get update && apt-get install -y git vim
 RUN docker-php-ext-install mysqli
 
-
-
 WORKDIR /var/www/
 RUN rm -rf *
 
 COPY ./www .
-
 RUN chmod 777 /var/www/html/upload
 
 COPY ./FLAG .

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    image_name:
+        build:
+            context: ./
+            dockerfile: ./Dockerfile
+        ports:
+          - "10014:80"
+        stdin_open: true
+        tty: true
+        privileged: true
