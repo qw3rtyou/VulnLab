@@ -17,6 +17,6 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "10004:10003"
+      - "10003:10003"
     depends_on:
       - db

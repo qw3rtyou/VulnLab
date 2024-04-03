@@ -20,6 +20,6 @@ services:
       ADMIN_FLAG: ${ADMIN_PASSWORD}
       LOGIN_FLAG: ${LOGIN_FLAG}
     ports:
-      - "10003:10003"
+      - "10002:10002"
     depends_on:
       - db
