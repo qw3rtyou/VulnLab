@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  web:
+    build: .
+    ports:
+      - "10007:80"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root_password
+      - MYSQL_DB=my_database
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=my_database
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

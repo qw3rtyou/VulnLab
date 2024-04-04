@@ -9,8 +9,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "3306:3306"
       
   app:
     build: .
@@ -21,9 +19,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       ADMIN_SECRET_KEY: ${ADMIN_SECRET_KEY}
       CHROMEDRIVER_PATH: ${CHROMEDRIVER_PATH}
-      RUN_PORT: ${RUN_PORT}
     ports:
-      - "10002:10002"
+      - "10006:10006"
     depends_on:
       - db
 

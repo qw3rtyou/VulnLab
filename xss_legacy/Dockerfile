@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=10002
+ENV FLASK_RUN_PORT=10006
 
 WORKDIR /app
 COPY . .
@@ -18,6 +18,6 @@ RUN wget -q "https://storage.googleapis.com/chrome-for-testing-public/122.0.6261
     unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
     rm /tmp/chromedriver.zip
 
-EXPOSE 10002
+EXPOSE 10006
 
 CMD ["flask", "run"]

@@ -9,7 +9,7 @@ const FLAG = process.env.FLAG || "FLAG{example_flag}";
 const USERS = {
     "admin": {
         "username": "admin",
-        "password": require('crypto').randomBytes(16).toString('hex'),
+        "password": require('crypto').randomBytes(16).toString('hex'),  //Do not bruteforce!!
     },
     "guest": {
         "username": "guest",
@@ -32,12 +32,12 @@ app.post("/login", (req, res) => {
 
     if (user) {
         if (username == "guest") {
-            res.send("Welcome, guest.");
+            res.render('result', { msg: `Welcome, Guest` });
         } else {
-            res.render('success', { msg: `Welcome, ${username}. \n ${FLAG}` });
+            res.render('result', { msg: `Welcome, ${username}. ${FLAG}` });
         }
     } else {
-        res.send("Invalid username or password");
+        res.render('result', { msg: `Invalid username or password` });
     }
 });
 
