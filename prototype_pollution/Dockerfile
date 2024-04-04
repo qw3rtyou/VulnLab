@@ -1,20 +1,10 @@
-FROM python:3.8-slim-buster
-
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=10003
+FROM node:14
 
 WORKDIR /app
+COPY package*.json ./
+RUN npm install
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY ./deploy .
 
-COPY . .
-
-RUN apt-get update && \
-    apt-get install -y default-mysql-client && \
-    rm -rf /var/lib/apt/lists/*
-
-EXPOSE 10003
-
-CMD ["flask", "run"]
+EXPOSE 10008
+CMD ["npm", "start"]

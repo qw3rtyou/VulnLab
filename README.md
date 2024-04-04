@@ -1,3 +1,18 @@
+# 포트 관리
+00  sandbox
+01  change_header
+02  sqli
+03  sqli_blind
+04  ssti
+05  forum_php
+06  xss
+07  미정
+08  prototype_pollution
+09  미정
+10  미정
+
+
+---
 # 공격 실습용 docker 환경 모음
 - change_header - HTTP 헤더 변조 실습
 - forum_php - CRUD 및 다양한 서비스가 구현된 PHP 기반 서버 공격 실습
@@ -7,7 +22,7 @@
 - sqli - SQL Injection 실습
 - sqli_blind - SQL Injection 중 Blind SQL Injection 실습
 - ssti - SSTI 실습
-- xss - XSS 실습
+- xss - XSS 실습(제작 중)
 
 
 ---
@@ -16,6 +31,7 @@
 - LFI
 - RFI
 - Race Condition
+
 
 ---
 # 시간 남으면 할 것
