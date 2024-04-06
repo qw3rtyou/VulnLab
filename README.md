@@ -57,4 +57,4 @@
 - PHP Serialization
 - PHP Filter Gadget Chain
 
-- 그리고 pwn, rev, crypto
+- 그리고 pwn, rev, crypto 등등...
