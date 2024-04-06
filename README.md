@@ -14,15 +14,22 @@
 04  ssti  
 05  forum_php  
 06  xss  
-07  미정  
+07  file_upload  
 08  prototype_pollution  
-09  미정  
-10  미정  
+09  file_download  
+10  미정
+11  미정
+12  미정
+13  미정
+14  미정
+15  미정
 
 
 ---
 # 도커 설명
 - change_header - HTTP 헤더 변조 실습
+- file_download - PHP File Download 취약점 실습
+- file_upload - PHP File Upload 취약점 실습
 - forum_php - CRUD 및 다양한 서비스가 구현된 PHP 기반 서버 공격 실습
 - kknock_weekly - 유사 CTF 서버(문제는 다른 보안 관련 서비스에서 가져온 것도 있음)
 - prototype_pollution - Prototype Pollution 실습
@@ -30,22 +37,24 @@
 - sqli - SQL Injection 실습
 - sqli_blind - SQL Injection 중 Blind SQL Injection 실습
 - ssti - SSTI 실습
-- xss - XSS 실습(제작 중)
-
+- xss - XSS 실습
+- xss_alt - XSS 실습용 환경이었지만, 사용불가
 
 ---
 # 추후 추가 계획
 - Dom Clubbering
-- LFI
-- RFI
+- RFI, LFI
 - Race Condition
+- OS Command Injection
+- eval()
 
 
 ---
 # 시간 남으면 할 것
 - JWT
+- PHP Wrapper
 - PHP Type Juggling
-- PHP serialization
-- PHP filter chain
+- PHP Serialization
+- PHP Filter Gadget Chain
 
 - 그리고 pwn, rev, crypto
