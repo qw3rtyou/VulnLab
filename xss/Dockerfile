@@ -5,7 +5,7 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=10006
 
 WORKDIR /app
-COPY . .
+COPY deploy .
 
 RUN apt-get update && apt-get install -y python3 python3-pip wget gnupg2 unzip curl iputils-ping \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \

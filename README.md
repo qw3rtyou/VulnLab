@@ -1,28 +1,28 @@
 # 사용법
-`./start_all.sh`로 모든 도커 활성화할 수 있음
-각 디렉토리 별로 실습용 도커가 들어있고 다른 명령어 없이 `./[서버 경로]/start.sh`로 해당 도커 활성화
-구현은 완료했지만 노출시키기 싫으면 `start.sh` 대신 `.start.sh`로 통일함
-`.env`에서 flag 및 포트 설정할 수 있고 편의를 위해 대부분 docker-compose 사용하게 바꿀 예정 
+- `./start_all.sh`로 모든 도커 활성화할 수 있음  
+- 각 디렉토리 별로 실습용 도커가 들어있고 다른 명령어 없이 `./[서버 경로]/start.sh`로 해당 도커 활성화  
+- 구현은 완료했지만 노출시키기 싫으면 `start.sh` 대신 `.start.sh`로 통일함  
+- `.env`에서 flag 및 포트 설정할 수 있고 편의를 위해 대부분 docker-compose 사용하게 바꿀 예정  
 
 
 ---
 # 포트 현황
-00  sandbox  
-01  change_header  
-02  sqli  
-03  sqli_blind  
-04  ssti  
-05  forum_php  
-06  xss  
-07  file_upload  
-08  prototype_pollution  
-09  file_download  
-10  미정
-11  미정
-12  미정
-13  미정
-14  미정
-15  미정
+- 00  sandbox  
+- 01  change_header  
+- 02  sqli  
+- 03  sqli_blind  
+- 04  ssti  
+- 05  forum_php  
+- 06  xss  
+- 07  file_upload  
+- 08  prototype_pollution  
+- 09  file_download  
+- 10  미정  
+- 11  미정  
+- 12  미정  
+- 13  미정  
+- 14  미정  
+- 15  미정  
 
 
 ---
@@ -38,10 +38,9 @@
 - sqli_blind - SQL Injection 중 Blind SQL Injection 실습
 - ssti - SSTI 실습
 - xss - XSS 실습
-- xss_alt - XSS 실습용 환경이었지만, 사용불가
 
 ---
-# 추후 추가 계획
+# 추후 계획
 - Dom Clubbering
 - RFI, LFI
 - Race Condition

@@ -1,2 +1,0 @@
-docker build -t change_header .
-docker run -p 10001:5000 change_header

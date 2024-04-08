@@ -5,4 +5,4 @@ services:
     environment:
       FLAG: ${FLAG}
     ports:
-      - "10004:10004"
+      - "10004:8080"

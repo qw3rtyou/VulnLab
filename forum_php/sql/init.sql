@@ -13,7 +13,7 @@ CREATE TABLE `login` (
 INSERT INTO
   `login` (`login_id`, `login_pw`, `created`)
 VALUES
-  ('admin', 'KO{THIS_IS_SERVER_FAKE_FLAG}', NOW()),
+  ('admin', 'KO{DB_FAKE_FLAG}', NOW()),
   ('asdf', '$2y$10$5mtfj2JGnjejRbmTi4UMiu9vI6iV5GOSiSV8w1kW7qcDVENfE.ct.', NOW());
 
 DROP TABLE IF EXISTS `board`;
