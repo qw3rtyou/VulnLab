@@ -1,9 +1,0 @@
-CREATE DATABASE IF NOT EXISTS file_upload;
-USE file_upload;
-
-CREATE TABLE IF NOT EXISTS upload (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
-    filename VARCHAR(255) NOT NULL
-);

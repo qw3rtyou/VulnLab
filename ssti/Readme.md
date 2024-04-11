@@ -1,4 +1,5 @@
 # 라업
+flag가 두 개인데, 아래의 페이로드를 각각 입력하면 flag를 얻을 수 있음
 1. app.secret_key flag
 ```
 {{config['SECRET_KEY']}}

@@ -1,10 +1,11 @@
-FROM php:7.4-apache
-COPY ./deploy /var/www/html/
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-RUN chmod 777 /var/www/html/uploads
+WORKDIR /app
+COPY ./deploy /app
+RUN mkdir -p /app/uploads
+RUN pip install --no-cache-dir flask
+RUN chmod 111 ./flag
+EXPOSE 8000
 
-COPY flag /flag
-RUN chmod 444 /flag
-
-RUN docker-php-ext-install mysqli
-RUN a2enmod rewrite
+CMD ["python", "./app.py"]
