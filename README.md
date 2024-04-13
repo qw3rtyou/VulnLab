@@ -38,10 +38,10 @@
 - sqli_blind - SQL Injection 중 Blind SQL Injection 실습
 - ssti - SSTI 실습
 - xss - XSS 실습
+- dom_clubbering - Dom Clubbering 실습
 
 ---
 # 추후 계획
-- Dom Clubbering
 - RFI, LFI
 - Race Condition
 - OS Command Injection
