@@ -9,3 +9,4 @@ K0{quote_is_important}
 
 # 설명
 SQL injection
+로그인 성공 시 플래그 반환
