@@ -35,7 +35,7 @@ def login():
     error = None
     query = None
     if request.method == "POST":
-        filtering_list = ['or', 'and']
+        filtering_list = ['or', 'and', '\'', '"']
         username = request.form["username"].lower()
         password = request.form["password"].lower()
 
