@@ -23,8 +23,8 @@
 - 13  미정  
 - 14  미정  
 - 15  미정  
-- 30 sqli_step1
-- 31 sqli_step2
+- 30~ sqli_step1 ~
+
 
 
 ---
