@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 10008;
+const PORT = process.env.PORT || 8888;
 const FLAG = process.env.FLAG || "FLAG{example_flag}";
 
 const USERS = {

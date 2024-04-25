@@ -23,6 +23,7 @@
 - 13  미정  
 - 14  미정  
 - 15  미정  
+- 30 sqli_step1
 
 
 ---
@@ -38,7 +39,7 @@
 - sqli_blind - SQL Injection 중 Blind SQL Injection 실습
 - ssti - SSTI 실습
 - xss - XSS 실습
-- dom_clubbering - Dom Clubbering 실습
+- dom_clubbering - Dom Clubbering 실습 제작 중
 
 ---
 # 추후 계획

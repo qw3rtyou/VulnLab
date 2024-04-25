@@ -4,7 +4,7 @@ import subprocess
 from flask import Flask, request, render_template
 
 APP = Flask(__name__)
-APP.secret_key = "**FAKEKEY**"
+APP.secret_key = os.getenv("FLAG")
 
 
 @APP.route("/")
