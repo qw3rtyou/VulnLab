@@ -4,9 +4,9 @@
 
 
 # 플래그
-K0{WAF_is_no_use!}
+K0{good_4ft3rn00n!}
 
 
 # 설명
 SQL injection
-로그인 성공 시 플래그 반환
+admin비밀번호가 플래그

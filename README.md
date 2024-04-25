@@ -23,8 +23,7 @@
 - 13  미정  
 - 14  미정  
 - 15  미정  
-- 30~ sqli_step1 ~
-
+- 30~35 sqli_filtering_bypass
 
 
 ---
