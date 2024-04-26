@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 WORKDIR /app
-COPY ./deploy /app
+COPY ./server /app
 RUN mkdir -p /app/uploads
 RUN pip install --no-cache-dir flask
 RUN chmod 111 ./flag

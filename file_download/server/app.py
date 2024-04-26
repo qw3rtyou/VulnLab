@@ -4,7 +4,7 @@ import subprocess
 from flask import Flask, request, render_template
 
 APP = Flask(__name__)
-APP.secret_key = 'CENSORED'
+APP.secret_key = 'Wow_you_find_this?'
 
 
 @APP.route("/")
