@@ -25,6 +25,7 @@
 - 15  미정  
 - 29 time_based_sqli
 - 30 sqli_step1
+- 30~35 sqli_filtering_bypass
 
 
 ---
