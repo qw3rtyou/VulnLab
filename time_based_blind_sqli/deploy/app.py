@@ -32,8 +32,11 @@ def login():
         password = request.form['password']
         query = text(f"SELECT * FROM user WHERE username = '{username}' AND password = '{password}'")
         with db.engine.connect() as connection:
-            result = connection.execute(query)
-            user = result.fetchone()
+            try:
+                result = connection.execute(query)
+                result.fetchone()
+            except:
+                render_template('login.html', query=query)
             
     return render_template('login.html', query=query)
 

@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS user (
     password VARCHAR(255) NOT NULL
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; -- 한글지원
 
-INSERT INTO user (username, password) VALUES ('admin', 'K0{fun_sqli}'); -- 환경변수 처리해야 됨
+INSERT INTO user (username, password) VALUES ('admin', 'K0{I_like_intime}'); -- 환경변수 처리해야 됨
