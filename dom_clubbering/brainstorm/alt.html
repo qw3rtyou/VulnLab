@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <a id="CONFIG"></a>
+    <a id="CONFIG" name="cmd" href="javascript:alert(xss start!)"></a>
+  </body>
+
+  <script>
+    secretkey = "asdfasdf";
+    window.CONFIG = window.CONFIG || {
+      cmd: "1",
+      isadmin: false,
+    };
+
+    if (window.CONFIG.isadmin !== false) {
+      location.href = window.CONFIG.cmd;
+    }
+  </script>
+</html>
