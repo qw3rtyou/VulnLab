@@ -8,6 +8,7 @@ app.config["JSON_AS_ASCII"] = False
 def home():
     user_agent = request.headers.get("User-Agent")
     cookie = request.cookies.get("cookie")
+    print(cookie)
     proxy_param = None
     if request.method == "GET":
         return (
