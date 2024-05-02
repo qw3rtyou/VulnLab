@@ -4,7 +4,7 @@
 
 
 # 플래그
-K0{blind_sql_with_WAF_5t4rt}
+K0{blind_sql_with_WAF}
 
 
 # 설명
