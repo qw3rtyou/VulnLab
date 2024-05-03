@@ -30,7 +30,10 @@
 
 <body>
   <div class="container">
-    <span class="mb-4">Only use a tag</span>
+    <h2 class="mb-4">HTML Lab</h2>
+    <div class="col text-right">
+      <a href="{{ url_for('report') }}" class="btn btn-primary">report</a>
+    </div>
     <form method="post">
       <div class="form-group">
         <label for="content">Content:</label>
@@ -41,12 +44,17 @@
     {% if content %}
     <div class="alert alert-info" role="alert">{{ content|safe }}</div>
     {% endif %}
-    <script>
-      if (window.CONFIG && window.CONFIG.debug) {
-        location.href = window.CONFIG.main;
-      }
-    </script>
   </div>
+  <script>
+    window.CONFIG = window.CONFIG || {
+      check: false,
+      location: "http://ssh.knock-on.org:10010/",
+    };
+
+    if (window.CONFIG.check !== false) {
+      location.href = window.CONFIG.location
+    }
+  </script>
 </body>
 
 </html>

@@ -34,11 +34,12 @@
       <div class="container">
         <div class="row">
           <div class="col text-left">
-            <a href="{{ url_for('practice') }}" class="btn btn-primary">a tag practice</a>
+            <a href="{{ url_for('practice') }}" class="btn btn-primary">HTML lab</a>
           </div>
           <div class="col text-right">
             <form id="report-form" method="post" class="form-inline d-inline-block">
-              <input type="text" class="form-control mb-2 mr-sm-2" id="report_url" name="report_url"
+              {% if localhost %}<span>{{ localhost|default("http://localhost:10010/")}}</span>{% endif %}<input
+                type="text" class="form-control mb-2 mr-sm-2" id="report_url" name="report_url"
                 placeholder="Report URL" />
               <button type="submit" class="btn btn-primary mb-2">
                 Activate Report Bot
