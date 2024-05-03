@@ -34,11 +34,10 @@
           <label for="title">Title:</label>
           <input type="text" class="form-control" id="title" name="title" />
         </div>
+        {% if alert %}
+        {{ alert | safe }}
+        {% endif %}
         <div class="form-group">
-          {% if alert %}
-          {{ alert | safe }}
-          {% end if %}
-
           <label for="content">Content:</label>
           <textarea
             class="form-control"

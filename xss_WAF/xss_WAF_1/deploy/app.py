@@ -50,7 +50,7 @@ def board():
     return render_template("board.html", posts=posts, message=message)
 
 
-black_list = ["scirpt","img","on","error","alert"]
+black_list = ["script","img","on","error"]
 
 @app.route("/add", methods=["GET", "POST"])
 def add_post():
@@ -59,7 +59,7 @@ def add_post():
         content = request.form["content"]
         for black in black_list :
             if black in content:
-                render_template("add_post.html",alert="<script>alert('No Hack!')</scirpt>")
+                return render_template("add_post.html",alert="<script>alert('No Hack!');window.history.back();</script>")
         post = Post(title=title, content=content)
         db.session.add(post)
         db.session.commit()

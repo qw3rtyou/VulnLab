@@ -50,11 +50,16 @@ def board():
     return render_template("board.html", posts=posts, message=message)
 
 
+black_list = ["script","img","audio","body","video","object","meta","location","href","alert","window"]
+
 @app.route("/add", methods=["GET", "POST"])
 def add_post():
     if request.method == "POST":
-        title = request.form["title"]
-        content = request.form["content"]
+        title = request.form["title"] #no not try XSS in title!
+        content = request.form["content"].lower()
+        for black in black_list :
+            if black in content:
+                content.replace(black,"")
         post = Post(title=title, content=content)
         db.session.add(post)
         db.session.commit()
@@ -66,17 +71,6 @@ def add_post():
 def view_post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template("post.html", post=post)
-
-
-@app.route("/edit/<int:post_id>", methods=["GET", "POST"])
-def edit_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if request.method == "POST":
-        post.title = request.form["title"]
-        post.content = request.form["content"]
-        db.session.commit()
-        return redirect(url_for("board"))
-    return render_template("edit_post.html", post=post)
 
 
 @app.route("/delete/<int:post_id>", methods=["GET"])
