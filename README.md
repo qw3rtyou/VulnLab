@@ -26,6 +26,7 @@
 - 29 time_based_sqli
 - 30 sqli_step1
 - 30~35 sqli_filtering_bypass
+- 40~   XSS_filtering_bypass
 
 
 ---
