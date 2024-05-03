@@ -10,7 +10,7 @@
 
 
 # 플래그
-K0{Wh3r3_d1d_my_s3cr3t_k3y?}
+K0{co0k1e_1s_r4bbit}
 
 # 설명
-ssti 취약점을 통한 어플리케이션 레벨의 데이터 탈취 및 RCE
+xss

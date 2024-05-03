@@ -20,7 +20,7 @@ services:
       ADMIN_SECRET_KEY: ${ADMIN_SECRET_KEY}
       CHROMEDRIVER_PATH: ${CHROMEDRIVER_PATH}
     ports:
-      - "10006:10006"
+      - "10041:10006"
     depends_on:
       - db
 
