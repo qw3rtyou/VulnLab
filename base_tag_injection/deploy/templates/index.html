@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>게시판</h1>
+        <hr>
+        <ul class="list-group">
+            {% for post in posts %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('view_post', id=post.id) }}">{{ post.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('write') }}" class="btn btn-primary mt-3">글쓰기</a>
+        <button type="submit" class="btn btn-primary mb-2">
+            Activate Admin Bot
+        </button>
+    </div>
+</body>
+</html>
