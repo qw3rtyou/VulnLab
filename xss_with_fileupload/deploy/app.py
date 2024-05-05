@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_sqlalchemy import SQLAlchemy
+import secrets
 
 import os
 import requests
@@ -9,7 +10,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
 
 app = Flask(__name__)
 
@@ -31,72 +31,73 @@ db = SQLAlchemy(app)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(64), nullable=False)
+    title = db.Column(db.String(64), nullable=False)
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.content}')"
 
+nonce = secrets.token_hex(16)
 
-@app.route("/")
+#SCP설정
+@app.after_request
+def set_csp(response): 
+    response.headers['Content-Security-Policy'] = f"script-src 'nonce-{nonce}'"
+    return response
+
+@app.route('/')
 def index():
-    return render_template("index.html")
-
-
-@app.route("/board")
-def board():
     posts = Post.query.all()
-    message = request.args.get("message", None)
-    return render_template("board.html", posts=posts, message=message)
+    return render_template('index.html', posts=posts)
 
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route("/add", methods=["GET", "POST"])
-def add_post():
-    if request.method == "POST":
-        title = request.form["title"]
-        content = request.form["content"]
-        post = Post(title=title, content=content)
+@app.route('/write', methods=['GET', 'POST'])
+def write():
+    if request.method == 'POST':
+        content = request.form['content']
+        title = request.form['title']
+        password = request.form['password']
+        image_file = request.files['image'] 
+
+        if image_file:
+            filename = (image_file.filename)
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(image_path)
+        else:
+            image_path = None
+
+        if len(password) < 4:
+            return "Password must be at least 4 characters long."
+
+        post = Post(content=content, password=password, title=title, image=image_path)
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for("board"))
-    return render_template("add_post.html")
+        return redirect(url_for('index'))
+    return render_template('write.html')
 
+@app.route('/post/<int:id>', methods=['GET', 'POST'])
+def view_post(id):
+    post = Post.query.get_or_404(id)
+    if request.method == 'POST':
+        global nonce
+        nonce = secrets.token_hex(16)
 
-@app.route("/post/<int:post_id>")
-def view_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    return render_template("post.html", post=post)
+        password = request.form['password']
+        if password == post.password:
+            return render_template('post.html', post=post,nonce=nonce)
+        else:
+            return "비밀번호가 일치하지 않습니다."
+    return render_template('view_post.html', post=post)
 
-
-@app.route("/edit/<int:post_id>", methods=["GET", "POST"])
-def edit_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if request.method == "POST":
-        post.title = request.form["title"]
-        post.content = request.form["content"]
-        db.session.commit()
-        return redirect(url_for("board"))
-    return render_template("edit_post.html", post=post)
-
-
-@app.route("/delete/<int:post_id>", methods=["GET"])
-def delete_post(post_id):
-    post = Post.query.get_or_404(post_id)
+@app.route('/delete/<int:id>')
+def delete_post(id):
+    post = Post.query.get_or_404(id)
     db.session.delete(post)
     db.session.commit()
-    return redirect(url_for("board"))
-
-
-@app.route("/search", methods=["GET", "POST"])
-def search():
-    if request.method == "POST":
-        search_term = request.form["search"]
-        posts = Post.query.filter(
-            Post.title.contains(search_term) | Post.content.contains(search_term)
-        ).all()
-        return render_template("search.html", posts=posts)
-    return render_template("search.html")
-
+    return redirect(url_for('index'))
 
 def read_url(url, cookie={"name": "name", "value": "value"}):
     driver = None
@@ -150,5 +151,6 @@ def admin(post_id):
     return render_template("board.html", posts=posts, message=message)
 
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     app.run(host="0.0.0.0", port=10006, debug=True)
