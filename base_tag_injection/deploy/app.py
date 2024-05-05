@@ -68,6 +68,10 @@ def write():
 @app.route('/post/<int:id>', methods=['GET', 'POST'])
 def view_post(id):
     post = Post.query.get_or_404(id)
+    
+    if '127.0.0.1' == request.remote_addr: #if admin bot
+        return render_template('post.html', post=post)
+    
     if request.method == 'POST':
         global nonce
         nonce = secrets.token_hex(16)
