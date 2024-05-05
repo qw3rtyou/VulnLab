@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    {% if message %}
+        <div class="alert alert-info" role="alert">{{ message }}</div>
+        {% endif %}
+    <div class="container mt-5">
+        <h1>게시판</h1>
+        <hr>
+        <ul class="list-group">
+            {% for post in posts %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('view_post', id=post.id) }}">{{post.id}}.{{ post.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('write') }}" class="btn btn-primary mt-3">글쓰기</a>
+        <div class="col text-right">
+            <form
+              id="adminForm"
+              method="post"
+              class="form-inline d-inline-block"
+            >
+              <input
+                type="number"
+                class="form-control mb-2 mr-sm-2"
+                id="post_id"
+                name="post_id"
+                placeholder="Post ID"
+              />
+              <button type="submit" class="btn btn-primary mb-2">
+                Activate Admin Bot
+              </button>
+    </div>
+    <script>
+        document.getElementById("adminForm").onsubmit = function (e) {
+          e.preventDefault();
+          var post_id = document.getElementById("post_id").value;
+          var actionUrl = "{{ url_for('admin', post_id=1) }}".replace("1", post_id);
+          this.action = actionUrl;
+          this.submit();
+        };
+      </script>
+</body>
+</html>

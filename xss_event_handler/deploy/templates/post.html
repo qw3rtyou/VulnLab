@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 보기</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1>글 보기</h1>
+        <h2>{{post.title}}</h2>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <p>{{ post.content }}</p>
+                <a href="{{ url_for('delete_post', id=post.id) }}" class="btn btn-danger">삭제</a>
+            </div>
+        </div>
+        {% if post.image %}
+        <img src="{{post.image | safe}}">
+        {% endif %}
+    </div>
+</body>
+</html>

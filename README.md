@@ -19,7 +19,7 @@
 - 09  file_download  
 - 10  dom_clubbering
 - 11  base_tag_injection  
-- 12  미정  
+- 12  xss_event_handler  
 - 13  미정  
 - 14  미정  
 - 15  미정  
