@@ -50,7 +50,7 @@ def board():
     return render_template("board.html", posts=posts, message=message)
 
 
-black_list = ["script","img","on","error"]
+black_list = ["script","img","error"]
 
 @app.route("/add", methods=["GET", "POST"])
 def add_post():
