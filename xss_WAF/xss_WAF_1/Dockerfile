@@ -1,11 +1,4 @@
-FROM python:3.10-slim-buster
-
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=10006
-
-WORKDIR /app
-COPY deploy .
+FROM ubuntu:22.04 AS builder
 
 RUN apt-get update && apt-get install -y python3-pip wget curl unzip gnupg2
 
@@ -15,6 +8,15 @@ RUN wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.91/
 
 RUN pip3 install -r requirements.txt
 
+
+FROM builder AS runner
+COPY deploy .
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=10006
+
 EXPOSE 10006
+
+WORKDIR /app
 
 CMD ["flask", "run"]
