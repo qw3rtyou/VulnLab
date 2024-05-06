@@ -3,7 +3,7 @@ services:
   app:
     build: .
     environment:
-      ADMIN_SECRET_KEY: ${ADMIN_SECRET_KEY}
+      SECRET_KEY: ${SECRET_KEY}
       CHROMEDRIVER_PATH: ${CHROMEDRIVER_PATH}
     ports:
       - "10010:10010"

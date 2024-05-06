@@ -14,6 +14,7 @@ from selenium.webdriver.common.by import By
 
 app = Flask(__name__)
 CHROMEDRIVER_PATH = os.getenv("CHROMEDRIVER_PATH")
+FLAG = os.getenv("SECRET_KEY")
 localhost = "http://localhost:10010/"
 
 
@@ -67,7 +68,7 @@ def report():
             "report.html", message="Invaild URL", localhost=localhost
         )
 
-    cookie = {"name": "cookie", "value": "FAKE_FLAG"}
+    cookie = {"name": "cookie", "value": FLAG}
     success = read_url(target_url, cookie)
 
     if success:
