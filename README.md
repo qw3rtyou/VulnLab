@@ -18,14 +18,15 @@
 - 08  prototype_pollution  
 - 09  file_download  
 - 10  dom_clubbering
-- 11  미정  
-- 12  미정  
+- 11  base_tag_injection  
+- 12  xss_event_handler  
 - 13  미정  
 - 14  미정  
 - 15  미정  
 - 29 time_based_sqli
 - 30 sqli_step1
 - 30~35 sqli_filtering_bypass
+- 40~   XSS_filtering_bypass
 
 
 ---

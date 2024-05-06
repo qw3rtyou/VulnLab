@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      
+  app:
+    build: .
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      ADMIN_SECRET_KEY: ${ADMIN_SECRET_KEY}
+      CHROMEDRIVER_PATH: ${CHROMEDRIVER_PATH}
+    ports:
+      - "10011:10006"
+    depends_on:
+      - db
+
+      
