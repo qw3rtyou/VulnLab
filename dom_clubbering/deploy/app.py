@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import bleach
 import os
 import requests
+import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -42,7 +43,7 @@ def read_url(url, cookie={"name": "name", "value": "value"}):
         driver.add_cookie(cookie)
         driver.get(url)
 
-        driver.get("https://enlb0r4gre44p.x.pipedream.net")
+        time.sleep(3)
 
     except Exception as e:
         if driver:
@@ -62,7 +63,9 @@ def report():
     target_url = localhost + request.form["report_url"]
 
     if requests.get(target_url).status_code == 404:
-        return render_template("report.html", message="Invaild URL")
+        return render_template(
+            "report.html", message="Invaild URL", localhost=localhost
+        )
 
     cookie = {"name": "cookie", "value": "FAKE_FLAG"}
     success = read_url(target_url, cookie)
@@ -75,12 +78,11 @@ def report():
     return render_template("report.html", message=message, localhost=localhost)
 
 
-@app.route("/practice", methods=["GET", "POST"])
+@app.route("/practice", methods=["GET"])
 def practice():
-    if request.method == "GET":
+    content = request.args.get("content")
+    if not content:
         return render_template("practice.html")
-
-    content = request.form["content"]
 
     sanitized_content = bleach.clean(
         content,

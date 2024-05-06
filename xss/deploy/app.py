@@ -99,9 +99,10 @@ def search():
 
 
 def read_url(url, cookie={"name": "name", "value": "value"}):
+    import sys
     driver = None
     try:
-        service = Service(executable_path=CHROMEDRIVER_PATH)
+        service = Service(executable_path="/usr/local/bin/chromedriver-linux64/chromedriver")
 
         options = webdriver.ChromeOptions()
         options.add_argument("--headless")
@@ -118,8 +119,9 @@ def read_url(url, cookie={"name": "name", "value": "value"}):
         driver.get(localhost)
         driver.add_cookie(cookie)
         driver.get(url)
-
+        print("done", file=sys.stderr)
     except Exception as e:
+        print(e, file=sys.stderr)
         if driver:
             driver.quit()
         return False
