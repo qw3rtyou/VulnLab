@@ -59,7 +59,7 @@ def add_post():
         content = request.form["content"].lower()
         for black in black_list :
             if black in content:
-                content.replace(black,"")
+                content = content.replace(black,"")
         post = Post(title=title, content=content)
         db.session.add(post)
         db.session.commit()

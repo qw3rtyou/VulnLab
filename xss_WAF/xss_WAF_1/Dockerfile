@@ -18,5 +18,6 @@ ENV FLASK_RUN_PORT=10006
 EXPOSE 10006
 
 WORKDIR /app
+COPY deploy/ .
 
 CMD ["flask", "run"]
