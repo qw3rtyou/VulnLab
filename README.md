@@ -20,7 +20,7 @@
 - 10  dom_clubbering
 - 11  base_tag_injection  
 - 12  xss_event_handler  
-- 13  미정  
+- 13  CRLF injection  
 - 14  미정  
 - 15  미정  
 - 29 time_based_sqli
