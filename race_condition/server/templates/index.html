@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Counter</h2>
+
+        {% if counter %}
+        <div class="alert alert-info" role="alert">
+            {{counter}}
+        </div>
+        {% endif %}
+
+        <a href="{{ url_for('increase') }}" class="btn btn-primary">increase</a>
+        <a href="{{ url_for('reset') }}" class="btn btn-primary">reset</a>
+
+        {% if message %}
+        <div class="alert alert-info" role="alert">
+            {{message}}
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

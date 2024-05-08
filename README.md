@@ -22,7 +22,13 @@
 - 12  xss_event_handler  
 - 13  CRLF injection  
 - 14  미정  
-- 15  미정  
+- 15  race_condition
+- 16
+- 17
+- 18
+- 19
+- 20
+- 21
 - 29 time_based_sqli
 - 30 sqli_step1
 - 30~35 sqli_filtering_bypass
