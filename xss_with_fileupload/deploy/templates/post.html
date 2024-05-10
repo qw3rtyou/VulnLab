@@ -1,53 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ post.title }}</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <style>
-      .container {
-        padding-top: 2rem;
-      }
-      h1 {
-        margin-bottom: 1.5rem;
-      }
-      p {
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-      }
-      .btn {
-        margin-right: 0.5rem;
-      }
-      .btn-primary {
-        color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
-      }
-      .btn-danger {
-        color: #fff;
-        background-color: #dc3545;
-        border-color: #dc3545;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.content|safe }}</p>
-      <a
-        href="{{ url_for('edit_post', post_id=post.id) }}"
-        class="btn btn-primary"
-        >Edit</a
-      >
-      <a
-        href="{{ url_for('delete_post', post_id=post.id) }}"
-        class="btn btn-danger"
-        >Delete</a
-      >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 보기</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1>글 보기</h1>
+        <h2>{{post.title}}</h2>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                
+                <p>{{ post.content | safe}}</p>
+                <br>
+                <a href="{{ url_for( 'uploaded_file', filename=post.image) }}" class="btn btn-primary mt-2">이미지 다운로드</a>
+                <br><br>
+                <a href="{{ url_for('delete_post', id=post.id) }}" class="btn btn-danger">삭제</a>
+            </div>
+        </div>
+        
     </div>
-  </body>
+</body>
 </html>

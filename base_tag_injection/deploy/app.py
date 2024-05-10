@@ -49,7 +49,9 @@ def set_csp(response):
 @app.route('/')
 def index():
     posts = Post.query.all()
-    return render_template('index.html', posts=posts)
+    global nonce
+    nonce = secrets.token_hex(16)
+    return render_template('index.html', posts=posts, nonce=nonce)
 
 @app.route('/write', methods=['GET', 'POST'])
 def write():
@@ -68,12 +70,13 @@ def write():
 @app.route('/post/<int:id>', methods=['GET', 'POST'])
 def view_post(id):
     post = Post.query.get_or_404(id)
-    
+    global nonce
     if '127.0.0.1' == request.remote_addr: #if admin bot
-        return render_template('post.html', post=post)
+        
+        nonce = secrets.token_hex(16)
+        return render_template('post.html', post=post, nonce=nonce)
     
     if request.method == 'POST':
-        global nonce
         nonce = secrets.token_hex(16)
 
         password = request.form['password']
@@ -112,6 +115,8 @@ def read_url(url, cookie={"name": "name", "value": "value"}):
         driver.get(url)
 
     except Exception as e:
+        import sys
+        print(e,file=sys.stderr)
         if driver:
             driver.quit()
         return False
@@ -128,7 +133,7 @@ def admin(post_id):
     if requests.get(target_url).status_code == 404:
         message = f"Unvalid Post ID"
         posts = Post.query.all()
-        return render_template("board.html", posts=posts, message=message)
+        return render_template("index.html", posts=posts, message=message)
 
     cookie = {"name": "cookie", "value": SECRET_KEY}
     success = read_url(target_url, cookie)
@@ -139,7 +144,7 @@ def admin(post_id):
         message = f"Bot activation failed: {target_url}"
 
     posts = Post.query.all()
-    return render_template("board.html", posts=posts, message=message)
+    return render_template("index.html", posts=posts, message=message)
 
 
 
