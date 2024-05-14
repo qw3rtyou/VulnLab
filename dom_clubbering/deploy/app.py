@@ -47,6 +47,8 @@ def read_url(url, cookie={"name": "name", "value": "value"}):
         time.sleep(3)
 
     except Exception as e:
+        import sys
+        print(e,file=sys.stderr)
         if driver:
             driver.quit()
         return False

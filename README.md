@@ -21,18 +21,17 @@
 - 11  base_tag_injection  
 - 12  xss_event_handler  
 - 13  CRLF injection  
-- 14  미정  
+- 14  xss_with_fileupload  
 - 15  race_condition
-- 16
-- 17
-- 18
-- 19
-- 20
-- 21
+- 16  business_logic-error
+- 17  IDOR
+- 
+- 
+- 
 - 29 time_based_sqli
 - 30 sqli_step1
 - 30~35 sqli_filtering_bypass
-- 40~   XSS_filtering_bypass
+- 40~43 XSS_filtering_bypass
 
 
 ---

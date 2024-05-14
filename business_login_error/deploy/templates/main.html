@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">메인화면</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">로그아웃</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container mt-5">
+        {% if message %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">상점</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for key, item in items.items() %}
+                            <li class="list-group-item">
+                                {{ item.name }} - {{ item.price }}원
+                                <form method="POST" action="/store/{{ key }}" class="d-inline">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control form-control-sm d-inline" id="quantity" name="quantity" value="1" min="1" required>
+                                        <button type="submit" class="btn btn-sm btn-primary d-inline">구매</button>
+                                    </div>
+                                </form>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">내 물품 리스트</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for item in inventory %}
+                            <li class="list-group-item">{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-header">잔액</div>
+                    <div class="card-body">
+                        <p class="card-text">현재 잔액: {{ session['money'] }}원</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
