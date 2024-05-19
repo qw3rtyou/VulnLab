@@ -6,17 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LFI Lab</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffe6e6; /* Pink background */
+            color: #4a4a4a; /* Dark grey text */
+        }
+
+        .card-header {
+            background-color: #ffcccb; /* Light pink */
+            color: #4a4a4a; /* Dark grey text */
+        }
+
+        .card-body {
+            background-color: #fff3cd; /* Light yellow */
+            color: #4a4a4a; /* Dark grey text */
+        }
+
+        .container {
+            margin-top: 5rem;
+        }
+
+        .card {
+            border: 1px solid #ffcccb; /* Light pink border */
+        }
+    </style>
 </head>
 
-<body class="bg-dark text-white">
-    <div class="container mt-5">
+<body>
+    <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
-                    <div class="card-header text-white bg-danger">
+                    <div class="card-header">
                         DATA
                     </div>
-                    <div class="card-body bg-secondary">
+                    <div class="card-body">
                         <?php
                         require ("db.php");
                         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
