@@ -25,6 +25,7 @@
 - 15  race_condition
 - 16  business_logic-error
 - 17  IDOR
+- 18  can't access
 - 
 - 
 - 
