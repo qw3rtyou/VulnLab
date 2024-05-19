@@ -26,7 +26,7 @@
 - 16  business_logic-error
 - 17  IDOR
 - 18  can't access
-- 
+- 19  can't access revenge
 - 
 - 
 - 29 time_based_sqli
