@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nectar:
+    build: .
+    ports:
+      - "10016:80"
+    volumes:
+      - ./uploads:/uploads

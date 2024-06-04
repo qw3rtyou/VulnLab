@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Argument ({{ g.uuid }})</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            /* Light background color */
+            color: #495057;
+            /* Text color */
+        }
+    </style>
+    <script>
+        function addRandomValue() {
+            var link = document.getElementById('random-link');
+            var randomValue = Math.random().toString(36).substr(2, 9);
+            link.href = "/?name=" + randomValue;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <a href="#" id="random-link" class="btn btn-primary mt-3" onclick="addRandomValue()">click</a>
+        <a href="/zip" class="btn btn-primary mt-3">zip</a>
+        <a href="/init" class="btn btn-primary mt-3">init</a><br><br>
+        <ul class="list-group mt-4">
+            {% for log in logs %}
+            <li class="list-group-item">{{ log }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

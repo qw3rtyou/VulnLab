@@ -9,6 +9,6 @@ def refund():
         print(res.text)
 
 
-for i in range(50):
+for i in range(15):
     t = threading.Thread(target=refund)
     t.start()
