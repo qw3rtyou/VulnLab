@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, abort
+from flask import Flask, render_template, request, redirect, url_for, abort,send_file
 from flask_sqlalchemy import SQLAlchemy
 import secrets
 
@@ -34,6 +34,7 @@ class Post(db.Model):
     password = db.Column(db.String(64), nullable=False)
     title = db.Column(db.String(64), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(100))
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.content}')"
@@ -43,16 +44,24 @@ nonce = secrets.token_hex(16)
 #SCP설정
 @app.after_request
 def set_csp(response): 
-    response.headers['Content-Security-Policy'] = f"script-src 'nonce-{nonce}'"
+    response.headers['Content-Security-Policy'] = f"script-src 'nonce-{nonce}' 'self'"
     return response
 
 @app.route('/')
 def index():
     posts = Post.query.all()
-    return render_template('index.html', posts=posts)
+    global nonce
+    nonce = secrets.token_hex(16)
+    return render_template('index.html', posts=posts, nonce=nonce)
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
+@app.route('/uploads/<path:filename>')
+def uploaded_file(filename):
+    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
 @app.route('/write', methods=['GET', 'POST'])
 def write():
@@ -72,7 +81,7 @@ def write():
         if len(password) < 4:
             return "Password must be at least 4 characters long."
 
-        post = Post(content=content, password=password, title=title, image=image_path)
+        post = Post(content=content, password=password, title=title, image=filename)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('index'))
@@ -81,6 +90,8 @@ def write():
 @app.route('/post/<int:id>', methods=['GET', 'POST'])
 def view_post(id):
     post = Post.query.get_or_404(id)
+    if '127.0.0.1' == request.remote_addr: #if admin bot
+        return render_template('post.html', post=post)
     if request.method == 'POST':
         global nonce
         nonce = secrets.token_hex(16)
@@ -137,7 +148,7 @@ def admin(post_id):
     if requests.get(target_url).status_code == 404:
         message = f"Unvalid Post ID"
         posts = Post.query.all()
-        return render_template("board.html", posts=posts, message=message)
+        return render_template("index.html", posts=posts, message=message)
 
     cookie = {"name": "cookie", "value": SECRET_KEY}
     success = read_url(target_url, cookie)
@@ -148,7 +159,7 @@ def admin(post_id):
         message = f"Bot activation failed: {target_url}"
 
     posts = Post.query.all()
-    return render_template("board.html", posts=posts, message=message)
+    return render_template("index.html", posts=posts, message=message)
 
 
 
