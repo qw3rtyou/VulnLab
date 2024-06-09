@@ -30,7 +30,7 @@ app.post("/login", (req, res) => {
     const { username, password } = req.body;
     const user = USERS[username];
 
-    if (user) {
+    if (user && user.password == password) {
         if (username == "guest") {
             res.render('result', { msg: `Welcome, Guest` });
         } else {
