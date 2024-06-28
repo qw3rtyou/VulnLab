@@ -1,0 +1,25 @@
+FROM ubuntu:22.04 AS builder
+
+RUN apt-get update && apt-get install -y python3-pip wget curl unzip gnupg2
+
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+RUN apt-get update -y && apt-get install -y google-chrome-stable
+
+COPY deploy /app
+
+WORKDIR /app
+RUN pip3 install -r requirements.txt
+
+
+FROM builder AS runner
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=10006
+ENV FLASK_ENV=development
+
+EXPOSE 10006
+
+WORKDIR /app
+
+CMD ["flask", "run"]

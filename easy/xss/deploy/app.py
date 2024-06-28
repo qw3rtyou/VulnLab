@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash,jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 import os
 import requests
+import secrets
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -17,7 +18,8 @@ MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
 MYSQL_HOST = os.getenv("MYSQL_HOST")
-SECRET_KEY = os.getenv("ADMIN_SECRET_KEY")
+SECRET_KEY = secrets.token_hex(16)
+FLAG = os.getenv("FLAG")
 CHROMEDRIVER_PATH = os.getenv("CHROMEDRIVER_PATH")
 localhost = "http://localhost:10006"
 
@@ -87,21 +89,12 @@ def delete_post(post_id):
     return redirect(url_for("board"))
 
 
-@app.route("/search", methods=["GET", "POST"])
-def search():
-    if request.method == "POST":
-        search_term = request.form["search"]
-        posts = Post.query.filter(
-            Post.title.contains(search_term) | Post.content.contains(search_term)
-        ).all()
-        return render_template("search.html", posts=posts)
-    return render_template("search.html")
-
-
 def read_url(url, cookie={"name": "name", "value": "value"}):
+    import sys
     driver = None
     try:
-        service = Service(executable_path=CHROMEDRIVER_PATH)
+        from webdriver_manager.chrome import ChromeDriverManager
+        service = Service(ChromeDriverManager().install())
 
         options = webdriver.ChromeOptions()
         options.add_argument("--headless")
@@ -118,8 +111,9 @@ def read_url(url, cookie={"name": "name", "value": "value"}):
         driver.get(localhost)
         driver.add_cookie(cookie)
         driver.get(url)
-
+        print("done", file=sys.stderr)
     except Exception as e:
+        print(e, file=sys.stderr)
         if driver:
             driver.quit()
         return False
@@ -148,6 +142,18 @@ def admin(post_id):
 
     posts = Post.query.all()
     return render_template("board.html", posts=posts, message=message)
+
+
+@app.route("/flag", methods=["GET"])
+def admin_panel():
+    if request.cookies.get("cookie") == SECRET_KEY:
+        
+        db.session.query(Post).delete()
+        db.session.commit()
+        
+        return jsonify(message=FLAG)
+    else:
+        return jsonify(message="Unauthorized"), 401
 
 
 if __name__ == "__main__":
