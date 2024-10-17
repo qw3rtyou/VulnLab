@@ -2,7 +2,6 @@
 - 웹 기본 취약점들을 실습할 수 있는 다양한 컨테이너를 제작 및 관리하는 프로젝트
 
 
----
 # 사용법
 - `./start_all.sh`로 모든 도커 활성화할 수 있음  
 - 각 디렉토리 별로 실습용 도커가 들어있고 다른 명령어 없이 `./[서버 경로]/start.sh`로 해당 도커 활성화  
@@ -10,7 +9,6 @@
 - `.env`에서 flag 및 포트 설정할 수 있고 편의를 위해 대부분 docker-compose 사용하게 바꿀 예정  
 
 
----
 # 포트 현황
 - 00  sandbox  
 - 01  change_header  
@@ -39,7 +37,6 @@
 - 40~43 XSS_filtering_bypass
 
 
----
 # 도커 설명
 - change_header - HTTP 헤더 변조 실습
 - file_download - PHP File Download 취약점 실습
@@ -54,7 +51,7 @@
 - xss - XSS 실습
 - dom_clubbering - Dom Clubbering 실습 제작 중
 
----
+
 # 추후 계획
 - RFI, LFI
 - Race Condition
@@ -62,7 +59,6 @@
 - eval()
 
 
----
 # 시간 남으면 할 것
 - JWT
 - PHP Wrapper
